@@ -8,8 +8,30 @@ export default function Password(){
     const [includeNumbers, setIncludeNumbers] = useState(false)
     const [includeSymbols, setIncludeSymbols] = useState(false)
 
+    const UpperCaseLetters = "QWERTYUIOPASDFGHJKLZXCVBNM"
+    const LowerCaseLetters = "qwertyuiopasdfghjklzxcvbnm"
+    const symbols = "!@#$%^&*()_+"
+    const numbers = "0123456789"
+
     function generatePassword(){
-        alert(passwordLength)
+        let generatedPassword = ""
+
+        if(includeUpperCase){
+            generatedPassword += UpperCaseLetters
+        }
+        if(includeLowerCase){
+            generatedPassword += LowerCaseLetters;
+        }
+        if(includeNumbers){
+            generatedPassword += numbers
+        }
+        if(includeSymbols){
+            generatedPassword += symbols
+        }
+
+        
+
+
     }
 
      function handlePasswordLength(event){
@@ -50,10 +72,10 @@ export default function Password(){
         <div>
             <h1 className="text-center font-bold text-white text-[2rem] mb-5">Password Generator</h1>
             <div className="flex flex-col gap-3 text-white bg-teal-900 rounded p-10 shadow-md shadow-black">
-                <input className='bg-white text-black rounded outline-0 text-center' placeholder='Your password' type="text" readOnly/>
+                <input className='p-1 text-[24px] bg-white text-black rounded outline-0 text-center' placeholder='Your password' type="text" readOnly/>
                 <div className="flex gap-10 items-center hover:opacity-50 transition-opacity duration-500 ">
                     <label className="flex-1" htmlFor="passwordLength">Password length</label>
-                    <input onChange={handlePasswordLength} placeholder="Password length" type="number" id="passwordLength" className="bg-white rounded text-black outline-0 border-1 text-center border-black"/>
+                    <input onChange={handlePasswordLength} type="number" id="passwordLength" className="bg-white rounded text-black outline-0 border-1 text-center border-black"/>
                 </div>
                 <div className="flex items-center hover:opacity-50 transition-opacity duration-500" >
                     <label className="flex-1" htmlFor="includeUppercase">Include uppercase letters</label>
