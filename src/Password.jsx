@@ -83,9 +83,12 @@ export default function Password(){
      }
 
     function copyToClipboard(){
-        navigator.clipboard.writeText(passwordInput)
-        alert(passwordInput)
-        // not done
+        if(passwordInput != "Password" && passwordInput.length < 20){
+            navigator.clipboard.writeText(passwordInput)
+            alert(passwordInput)
+        }else{
+            return setPasswordInput("Generate a password to copy")
+        }
     }
 
     return(
@@ -93,7 +96,7 @@ export default function Password(){
             <h1 className="text-center font-bold text-white text-[2rem] mb-5">Password Generator</h1>
             <div className="flex flex-col gap-3 text-white bg-teal-900 rounded p-10 shadow-md shadow-black">
                 <div onClick={copyToClipboard} className='flex flex-row items-center relative justify-center'>
-                    <input className= 'w-full p-2 text-[14px] bg-white text-black rounded outline-0 text-center' placeholder={passwordInput} type="text" readOnly/>
+                    <input className= 'w-full p-2 text-[14px] bg-white text-black rounded outline-0 text-left' placeholder={passwordInput} type="text" readOnly/>
                     <img className='cursor-pointer absolute right-0 h-8 w-8 ' src="./assets/copy.svg" alt="" />
                 </div>
                 <div className="flex gap-10 items-center hover:opacity-50 transition-opacity duration-500 ">
