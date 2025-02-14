@@ -15,45 +15,30 @@ export default function Password(){
     const numbers = "0123456789"
 
     function generatePassword(){
-        let generatedPassword = ""
+        let generatedString = ""
+
         if(!includeUpperCase && !includeLowerCase && !includeNumbers && !includeSymbols){
-            setPasswordInput("Voce precisa marcar alguma opcao!")  
+            alert("Please make sure you've checked at least one checkbox!")
         }
-        else{
-            if(includeUpperCase){
-                generatedPassword += UpperCaseLetters
-            }
-            else{
-                generatedPassword += ""
-            }
-            if(includeLowerCase){
-                generatedPassword += LowerCaseLetters;
-            }
-            else{
-                generatedPassword += ""
-            }
-            if(includeNumbers){
-                generatedPassword += numbers
-            }
-            else{
-                generatedPassword += ""
-            }
-            if(includeSymbols){
-                generatedPassword += symbols
-            }
-            else{
-                generatedPassword += ""
-            }
+        if(passwordLength < 7){
+            alert("Your password is too short!")
         }
-        var password = ""
+        else if(passwordLength > 20){
+            alert("Your password must be shorter")
+        }
+
+        includeUpperCase ? generatedString += UpperCaseLetters : generatedString += "";
+        includeLowerCase ? generatedString += LowerCaseLetters : generatedString += "";
+        includeSymbols ? generatedString += symbols : generatedString += "";
+        includeNumbers ? generatedString += numbers : generatedString += "";
+
+        let password = ""
 
         while(password.length < passwordLength){
-            var index = Math.floor(Math.random() * generatedPassword.length)
-            password += generatedPassword[index]
+            let index = Math.floor(Math.random() * generatedString.length)
+            password += generatedString[index]
         }
-        
         setPasswordInput(password)
-        
     }
 
      function handlePasswordLength(event){
@@ -63,6 +48,8 @@ export default function Password(){
      function handleIncludeUpperCase(event){
         if(event.target.checked){
             setIncludeUpperCase(event.target.checked)
+        }else{
+            setIncludeUpperCase(false)
         }
      }
 
@@ -70,17 +57,26 @@ export default function Password(){
         if(event.target.checked){
             setIncludeLowerCase(event.target.checked)
         }
+        else{
+            setIncludeLowerCase(false)
+        }
      }
 
      function handleIncludeNumbers(event){
         if(event.target.checked){
             setIncludeNumbers(event.target.checked)
         }
+        else{
+            setIncludeNumbers(false)
+        }
      }
      
      function handleIncludeSymbols(event){
         if(event.target.checked){
             setIncludeSymbols(event.target.checked)
+        }
+        else{
+            setIncludeSymbols(false)
         }
      }
 
@@ -91,7 +87,7 @@ export default function Password(){
                 <input className='p-1 text-[24px] bg-white text-black rounded outline-0 text-center' placeholder={passwordInput} type="text" readOnly/>
                 <div className="flex gap-10 items-center hover:opacity-50 transition-opacity duration-500 ">
                     <label className="flex-1" htmlFor="passwordLength">Password length</label>
-                    <input onChange={handlePasswordLength} type="number" id="passwordLength" className="bg-white rounded text-black outline-0 border-1 text-center border-black"/>
+                    <input onChange={handlePasswordLength} max={20} min={7} type="number" id="passwordLength" className="bg-white rounded text-black outline-0 border-1 text-center border-black"/>
                 </div>
                 <div className="flex items-center hover:opacity-50 transition-opacity duration-500" >
                     <label className="flex-1" htmlFor="includeUppercase">Include uppercase letters</label>
