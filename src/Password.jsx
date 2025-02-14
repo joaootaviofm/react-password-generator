@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import IncludeOptionError from './IncludeOptionError'
+import PasswordError from './PasswordError'
 
 export default function Password(){
     
@@ -10,6 +11,7 @@ export default function Password(){
     const [includeSymbols, setIncludeSymbols] = useState(false)
     const [passwordInput, setPasswordInput] = useState("Password")
     const [includeOptError, setIncludeOptError] = useState(false)
+    const [includePasswordError, setIncludePasswordError] = useState(false)
 
     const UpperCaseLetters = "QWERTYUIOPASDFGHJKLZXCVBNM"
     const LowerCaseLetters = "qwertyuiopasdfghjklzxcvbnm"
@@ -27,7 +29,12 @@ export default function Password(){
             return setPasswordInput("Include at least one option!")
         }
         if(passwordLength == 0){
+            setIncludePasswordError(true)
+            setTimeout(() => {
+                setIncludePasswordError(false)
+            },5000)
             return setPasswordInput("Input the password length")
+            
         }
         if(passwordLength < 7){
             return setPasswordInput("Password is too short!")
@@ -98,6 +105,7 @@ export default function Password(){
 
     return(
         <div>
+            {includePasswordError ? <PasswordError/> : ""}
             {includeOptError ? <IncludeOptionError/> : ""}  
             <h1 className="text-center font-bold text-white text-[2rem] mb-5">Password Generator</h1>
             <div className="flex flex-col gap-3 text-white bg-teal-900 rounded p-10 shadow-md shadow-black">
