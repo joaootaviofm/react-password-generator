@@ -14,8 +14,8 @@ export default function Password(){
     const symbols = "!@#$%^&*()_+"
     const numbers = "0123456789"
 
+    let password = ""
     function generatePassword(){
-        let password = ""
         let generatedString = ""
 
         if(!includeUpperCase && !includeLowerCase && !includeNumbers && !includeSymbols){
@@ -43,11 +43,11 @@ export default function Password(){
         setPasswordInput(password)
     }
 
-     function handlePasswordLength(event){
+    function handlePasswordLength(event){
         setPasswordLength(Number(event.target.value))
      }
 
-     function handleIncludeUpperCase(event){
+    function handleIncludeUpperCase(event){
         if(event.target.checked){
             setIncludeUpperCase(event.target.checked)
         }else{
@@ -55,7 +55,7 @@ export default function Password(){
         }
      }
 
-     function handleIncludeLowerCase(event){
+    function handleIncludeLowerCase(event){
         if(event.target.checked){
             setIncludeLowerCase(event.target.checked)
         }
@@ -64,7 +64,7 @@ export default function Password(){
         }
      }
 
-     function handleIncludeNumbers(event){
+    function handleIncludeNumbers(event){
         if(event.target.checked){
             setIncludeNumbers(event.target.checked)
         }
@@ -73,7 +73,7 @@ export default function Password(){
         }
      }
      
-     function handleIncludeSymbols(event){
+    function handleIncludeSymbols(event){
         if(event.target.checked){
             setIncludeSymbols(event.target.checked)
         }
@@ -82,11 +82,16 @@ export default function Password(){
         }
      }
 
+    function copyToClipboard(){
+        navigator.clipboard.writeText(passwordInput)
+        alert(passwordInput)
+    }
+
     return(
         <div>
             <h1 className="text-center font-bold text-white text-[2rem] mb-5">Password Generator</h1>
             <div className="flex flex-col gap-3 text-white bg-teal-900 rounded p-10 shadow-md shadow-black">
-                <input className='p-1 text-[16px] bg-white text-black rounded outline-0 text-center' placeholder={passwordInput} type="text" readOnly/>
+                <input onClick={copyToClipboard} className='p-1 text-[16px] bg-white text-black rounded outline-0 text-center' placeholder={passwordInput} type="text" readOnly/>
                 <div className="flex gap-10 items-center hover:opacity-50 transition-opacity duration-500 ">
                     <label className="flex-1" htmlFor="passwordLength">Password length</label>
                     <input onChange={handlePasswordLength} max={20} min={7} type="number" id="passwordLength" className="bg-white rounded text-black outline-0 border-1 text-center border-black"/>
