@@ -21,6 +21,9 @@ export default function Password(){
         if(!includeUpperCase && !includeLowerCase && !includeNumbers && !includeSymbols){
             return setPasswordInput("Include at least one option!")
         }
+        if(passwordLength == 0){
+            return setPasswordInput("Input the password length")
+        }
         if(passwordLength < 7){
             return setPasswordInput("Password is too short!")
         }
