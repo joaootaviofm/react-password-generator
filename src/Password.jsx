@@ -15,24 +15,23 @@ export default function Password(){
     const numbers = "0123456789"
 
     function generatePassword(){
+        let password = ""
         let generatedString = ""
 
         if(!includeUpperCase && !includeLowerCase && !includeNumbers && !includeSymbols){
-            alert("Please make sure you've checked at least one checkbox!")
+            return setPasswordInput("Include at least one option!")
         }
         if(passwordLength < 7){
-            alert("Your password is too short!")
+            return setPasswordInput("Password is too short!")
         }
         else if(passwordLength > 20){
-            alert("Your password must be shorter")
+            return setPasswordInput("Password must be shorter!")
         }
 
         includeUpperCase ? generatedString += UpperCaseLetters : generatedString += "";
         includeLowerCase ? generatedString += LowerCaseLetters : generatedString += "";
         includeSymbols ? generatedString += symbols : generatedString += "";
         includeNumbers ? generatedString += numbers : generatedString += "";
-
-        let password = ""
 
         while(password.length < passwordLength){
             let index = Math.floor(Math.random() * generatedString.length)
@@ -84,7 +83,7 @@ export default function Password(){
         <div>
             <h1 className="text-center font-bold text-white text-[2rem] mb-5">Password Generator</h1>
             <div className="flex flex-col gap-3 text-white bg-teal-900 rounded p-10 shadow-md shadow-black">
-                <input className='p-1 text-[24px] bg-white text-black rounded outline-0 text-center' placeholder={passwordInput} type="text" readOnly/>
+                <input className='p-1 text-[16px] bg-white text-black rounded outline-0 text-center' placeholder={passwordInput} type="text" readOnly/>
                 <div className="flex gap-10 items-center hover:opacity-50 transition-opacity duration-500 ">
                     <label className="flex-1" htmlFor="passwordLength">Password length</label>
                     <input onChange={handlePasswordLength} max={20} min={7} type="number" id="passwordLength" className="bg-white rounded text-black outline-0 border-1 text-center border-black"/>
