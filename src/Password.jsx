@@ -2,11 +2,12 @@ import { useState } from 'react'
 
 export default function Password(){
     
-    const [passwordLength, setPasswordLength] = useState()
+    const [passwordLength, setPasswordLength] = useState(0)
     const [includeUpperCase, setIncludeUpperCase] = useState(false)
     const [includeLowerCase, setIncludeLowerCase] = useState(false)
     const [includeNumbers, setIncludeNumbers] = useState(false)
     const [includeSymbols, setIncludeSymbols] = useState(false)
+    const [passwordInput, setPasswordInput] = useState("Password")
 
     const UpperCaseLetters = "QWERTYUIOPASDFGHJKLZXCVBNM"
     const LowerCaseLetters = "qwertyuiopasdfghjklzxcvbnm"
@@ -15,56 +16,71 @@ export default function Password(){
 
     function generatePassword(){
         let generatedPassword = ""
+        if(!includeUpperCase && !includeLowerCase && !includeNumbers && !includeSymbols){
+            setPasswordInput("Voce precisa marcar alguma opcao!")  
+        }
+        else{
+            if(includeUpperCase){
+                generatedPassword += UpperCaseLetters
+            }
+            else{
+                generatedPassword += ""
+            }
+            if(includeLowerCase){
+                generatedPassword += LowerCaseLetters;
+            }
+            else{
+                generatedPassword += ""
+            }
+            if(includeNumbers){
+                generatedPassword += numbers
+            }
+            else{
+                generatedPassword += ""
+            }
+            if(includeSymbols){
+                generatedPassword += symbols
+            }
+            else{
+                generatedPassword += ""
+            }
+        }
+        var password = ""
 
-        if(includeUpperCase){
-            generatedPassword += UpperCaseLetters
+        while(password.length < passwordLength){
+            var index = Math.floor(Math.random() * generatedPassword.length)
+            password += generatedPassword[index]
         }
-        if(includeLowerCase){
-            generatedPassword += LowerCaseLetters;
-        }
-        if(includeNumbers){
-            generatedPassword += numbers
-        }
-        if(includeSymbols){
-            generatedPassword += symbols
-        }
-
         
-
-
+        setPasswordInput(password)
+        
     }
 
      function handlePasswordLength(event){
-        setPasswordLength(event.target.value)
+        setPasswordLength(Number(event.target.value))
      }
 
      function handleIncludeUpperCase(event){
         if(event.target.checked){
-            setIncludeUpperCase(true)
+            setIncludeUpperCase(event.target.checked)
         }
      }
 
      function handleIncludeLowerCase(event){
         if(event.target.checked){
-            setIncludeLowerCase(true)
-        }
-     }
-     
-     function handleIncludeLowerCase(event){
-        if(event.target.checked){
-            setIncludeLowerCase(true)
+            setIncludeLowerCase(event.target.checked)
         }
      }
 
      function handleIncludeNumbers(event){
         if(event.target.checked){
-            setIncludeNumbers(true)
+            setIncludeNumbers(event.target.checked)
         }
      }
      
      function handleIncludeSymbols(event){
         if(event.target.checked){
-            setIncludeSymbols(true)
+            setIncludeSymbols(event.target.checked)
         }
      }
 
@@ -72,7 +88,7 @@ export default function Password(){
         <div>
             <h1 className="text-center font-bold text-white text-[2rem] mb-5">Password Generator</h1>
             <div className="flex flex-col gap-3 text-white bg-teal-900 rounded p-10 shadow-md shadow-black">
-                <input className='p-1 text-[24px] bg-white text-black rounded outline-0 text-center' placeholder='Your password' type="text" readOnly/>
+                <input className='p-1 text-[24px] bg-white text-black rounded outline-0 text-center' placeholder={passwordInput} type="text" readOnly/>
                 <div className="flex gap-10 items-center hover:opacity-50 transition-opacity duration-500 ">
                     <label className="flex-1" htmlFor="passwordLength">Password length</label>
                     <input onChange={handlePasswordLength} type="number" id="passwordLength" className="bg-white rounded text-black outline-0 border-1 text-center border-black"/>
