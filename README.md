@@ -11,7 +11,7 @@ Welcome to the **Random Password Generator**, a simple and efficient application
 
 ✅ Generate random passwords based on user preferences\
 ✅ Choose password length\
-✅ Include uppercase letters, lowercase letters, and symbols\
+✅ Include uppercase letters, lowercase letters, and symbols
 
 ## 📸 Demo
 
