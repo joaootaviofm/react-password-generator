@@ -1,9 +1,46 @@
-# Password generator
-- Project to generate safe passwords. The user can choose the password length and if he wants to have symbols, numbers, uppercase or lowercase letters in his password.
+# 🔐 Random Password Generator
 
-## Technologies used
-<div>
-  <img alt="Javascript" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
-  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt='React'>
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt='tailwindcss'/>
-</div>
+Welcome to the **Random Password Generator**, a simple and efficient application to create secure passwords according to user preferences.
+
+## 🚀 Technologies Used
+
+
+[![My Skills](https://skillicons.dev/icons?i=js,react,tailwind)](https://skillicons.dev)
+
+## 🎯 Features
+
+✅ Generate random passwords based on user preferences\
+✅ Choose password length\
+✅ Include uppercase letters, lowercase letters, and symbols\
+
+## 📸 Demo
+
+## 📦 How to Use
+
+1. Clone this repository:
+   ```sh
+   git clone https://github.com/joaootaviofm/react-password-generator.git
+   ```
+2. Navigate to the project folder:
+   ```sh
+   cd react-password-generator
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+4. Start the project:
+   ```sh
+   npm run dev
+   ```
+
+## 👨‍💻 Contribution
+
+Contributions are welcome! Feel free to open an issue or submit a pull request.
+
+---
+
+Developed by [joaootaviofm](https://github.com/joaootaviofm)
+
+
+
